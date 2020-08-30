@@ -201,6 +201,6 @@ Tests are written in Postman to check the status codes, response times and if th
 
 __Some screenshots of tests being run in Postman__
 ![sc_t1](sc_t1.png)
-![st_t2](st_t2.png)
+![sc_t2](sc_t2.png)
 ![sc_t3](sc_t3.png)
 ![sc_t4](sc_t4.png)
