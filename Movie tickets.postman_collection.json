@@ -1,0 +1,655 @@
+{
+	"info": {
+		"_postman_id": "f3c0aaf7-10e3-4263-953c-bc24dffbc6e8",
+		"name": "Movie tickets",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all tickets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7a6d3811-d4da-442d-bfd2-05de78c91969",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://localhost:8000/bookings_api/booking/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"bookings_api",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Book a new ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "283b7630-d93d-49f6-b96e-651862c969ae",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_name",
+							"value": "John",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "882625376",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2020-08-28",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "10:45",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/bookings_api/booking/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"bookings_api",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tickets with specific timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2da96a18-61f3-46b5-9f7d-f8eafc118ee5",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/bookings_api/booking/?date=2020-09-12&time=13:23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"bookings_api",
+						"booking",
+						""
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-09-12"
+						},
+						{
+							"key": "time",
+							"value": "13:23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user details using ticket id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7b40843b-2c86-473b-a063-fc1c0a3cb808",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/bookings_api/booking/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"bookings_api",
+						"booking",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update timing of a ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ef82607-621e-43cc-9e2c-65a597afb790",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "date",
+							"value": "2020-09-13",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "13:30",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/bookings_api/booking/1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"bookings_api",
+						"booking",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "28e9dbff-c73b-4494-a907-8c5887f37a9b",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 150ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(150);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/bookings_api/booking/2/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"bookings_api",
+						"booking",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku get all tickets",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "835b3c7f-02cd-45c8-a288-10b75a24c8d6",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 15000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(15000);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://movie-tickets-api.herokuapp.com/bookings_api/booking/",
+					"protocol": "https",
+					"host": [
+						"movie-tickets-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookings_api",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku book a new ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "65c6f18b-06cc-437e-89c0-85495cb24893",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 15000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(15000);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_name",
+							"value": "mkumar",
+							"type": "text"
+						},
+						{
+							"key": "phone_number",
+							"value": "9334556789",
+							"type": "text"
+						},
+						{
+							"key": "date",
+							"value": "2020-08-31",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "8:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://movie-tickets-api.herokuapp.com/bookings_api/booking/",
+					"protocol": "https",
+					"host": [
+						"movie-tickets-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookings_api",
+						"booking",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku get all tickets with specific timing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a92a1027-a1c1-4776-81e9-c0a6801a4f82",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 15000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(15000);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://movie-tickets-api.herokuapp.com/bookings_api/booking/?date=2020-09-12&time=13:23",
+					"protocol": "https",
+					"host": [
+						"movie-tickets-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookings_api",
+						"booking",
+						""
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2020-09-12"
+						},
+						{
+							"key": "time",
+							"value": "13:23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku get user details using user id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f25f2b78-171a-4f99-a1d0-cdfebacacb2e",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 15000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(15000);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://movie-tickets-api.herokuapp.com/bookings_api/booking/1/",
+					"protocol": "https",
+					"host": [
+						"movie-tickets-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookings_api",
+						"booking",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku update timing of a ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f6cf8b12-675c-4112-9975-b4f45719d35b",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 15000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(15000);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "date",
+							"value": "2020-09-01",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "7:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://movie-tickets-api.herokuapp.com/bookings_api/booking/1/",
+					"protocol": "https",
+					"host": [
+						"movie-tickets-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookings_api",
+						"booking",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Heroku delete ticket",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4a00e224-fcb0-41e7-9693-8625c9357f8e",
+						"exec": [
+							"pm.test(\"Status code is 200\", () => {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 15000ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(15000);",
+							"});",
+							"",
+							"pm.test(\"Response is not empty\", () => {",
+							"    pm.expect(Object.keys(pm.response.json()).length).to.above(0);",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://movie-tickets-api.herokuapp.com/bookings_api/booking/2/",
+					"protocol": "https",
+					"host": [
+						"movie-tickets-api",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"bookings_api",
+						"booking",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -34,24 +34,24 @@ def handle_booking(request):
                 ptime = ptime.split(':')
                 req_time = time(int(ptime[0]), int(ptime[1]))
             except:
-                return Response({"status": "405", "Description" : "Invalid data format"})
+                return Response({"status": "Failure", "Description" : "Invalid time format"})
 
             if req_time not in schedule:
-                return Response({"status": "405", "Description" : "Time provided is not scheduled"})
+                return Response({"status": "Failure", "Description" : "Time provided is not scheduled"})
 
             try:
                 entry_count = Booking.objects.all().filter(time=req_time, date=request.data.get('date', '')).count()
             except:
-                return Response({"status": "405", "Description" : "Invalid data format"})
-            if entry_count >= 1:
-                return Response({"status": "405", "Description" : "Time slot is completely booked"})
+                return Response({"status": "Failure", "Description" : "Invalid date format"})
+            if entry_count >= 20:
+                return Response({"status": "Failure", "Description" : "Time slot is completely booked"})
 
 
         data = request.data
         serializer = InsertNewTicket(data = data)
         if serializer.is_valid():
             ticket_instance = Booking.objects.create(**serializer.data)
-            return Response({"message": "Ticket {} sucessfully created".format(ticket_instance.ticket_id)})
+            return Response({"Status":"Success", "Description": "Ticket {} sucessfully created".format(ticket_instance.ticket_id)})
         else:
             return Response({"errors": serializer.errors})
 
@@ -64,7 +64,7 @@ def handle_ticket(request, id):
         try:
             ticket = Booking.objects.get(ticket_id = id)
         except Booking.DoesNotExist:
-            return Response({"status": "404", "Description" : "Not found"})
+            return Response({"status": "Failure", "Description" : "Not found"})
         serializer = UserDetailSerializer(ticket)
         return Response(serializer.data)
 
@@ -73,27 +73,44 @@ def handle_ticket(request, id):
         try:
             ticket = Booking.objects.get(ticket_id = id)
         except Booking.DoesNotExist:
-            return Response({"status": "404", "Description" : "Not found"})
+            return Response({"status": "Failure", "Description" : "Not found"})
+        schedule = [time(8,0,0), time(10,45,0), time(13,30,0), time(16,15,0), time(19,0,0), time(21,45,0)]
         date = request.data.get('date', '')
-        time = request.data.get('time', '')
+        ptime = request.data.get('time', '')
         if date is not '' and time is not '':
             try:
-                ticket.date = date
-                ticket.time = time
-                ticket.save()
-                return Response({"status" : "200", "Description": "Success"})
+                ptime = ptime.split(':')
+                req_time = time(int(ptime[0]), int(ptime[1]))
             except:
-                return Response({"status": "405", "Description" : "Invalid data format"})
+                return Response({"status": "Failure", "Description" : "Invalid time format"})
+
+            if req_time not in schedule:
+                return Response({"status": "Failure", "Description" : "Time provided is not scheduled"})
+
+            try:
+                entry_count = Booking.objects.all().filter(time=req_time, date=request.data.get('date', '')).count()
+            except:
+                return Response({"status": "Failure", "Description" : "Invalid date format"})
+            if entry_count >= 20:
+                return Response({"status": "Failure", "Description" : "Time slot is completely booked"})
+
+            try:
+                ticket.date = date
+                ticket.time = req_time
+                ticket.save()
+                return Response({"status" : "Success", "Description": "Ticket updated successfully"})
+            except:
+                return Response({"status": "Failure", "Description" : "Invalid data format"})
         
-        return Response({"status": "403", "Description" : "Incomplete data"})
+        return Response({"status": "Failure", "Description" : "Incomplete data"})
 
 
     elif request.method == 'DELETE':
         try:
             ticket = Booking.objects.get(ticket_id = id)
         except Booking.DoesNotExist:
-            return Response({"status": "404", "Description" : "Not found"})
+            return Response({"status": "Failure", "Description" : "Not found"})
 
         ticket.delete()
-        return Response({"status" : "200", "Description": "Success"})
+        return Response({"status" : "Success", "Description": "Ticket deleted successfully"})
 

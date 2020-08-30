@@ -10,14 +10,14 @@ def small_username(name):
     return name
 
 def small_phonenum(number):
-    valid_chars = [0,1,2,3,4,5,6,7,8,9]
+    valid_chars = ['0','1','2','3','4','5','6','7','8','9']
     if len(number) < 7:
         raise ValidationError(('%(number)s is smaller than 7 digits'), params={'number' : number})
-    if (number[0] is not '+') and (int(number[0]) not in valid_chars):
+    if (number[0] is not '+') and (number[0] not in valid_chars):
         '''print(number)'''
         raise ValidationError(('%(number)s is invalid'), params={'number' : number})
     for i in range(1, len(number)):
-        if int(number[i]) not in valid_chars:
+        if number[i] not in valid_chars:
             raise ValidationError(('%(number)s is invalid'), params={'number' : number})
     return number
 
