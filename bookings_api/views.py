@@ -11,8 +11,8 @@ from bookings_api.serializers import UserDetailSerializer
 from bookings_api.serializers import InsertNewTicket
 
 
-@api_view(['GET','POST'])
-def handle_booking(request):
+@api_view(['GET','POST'])           
+def handle_booking(request):                #function to fetch and add entries from the Booking table
     if request.method == 'GET':
         tickets = Booking.objects.all()
         date = request.GET.get('date', '')
@@ -26,8 +26,8 @@ def handle_booking(request):
 
 
     elif request.method == 'POST':
-        schedule = [time(8,0,0), time(10,45,0), time(13,30,0), time(16,15,0), time(19,0,0), time(21,45,0)]
-        ptime = request.data.get('time', '')
+        schedule = [time(8,0,0), time(10,45,0), time(13,30,0), time(16,15,0), time(19,0,0), time(21,45,0)]      # predefined time schedule
+        ptime = request.data.get('time', '')                                                                    # ptime is for provided time
         if ptime is not '':
             print(ptime)
             try:
@@ -36,14 +36,14 @@ def handle_booking(request):
             except:
                 return Response({"status": "Failure", "Description" : "Invalid time format"})
 
-            if req_time not in schedule:
+            if req_time not in schedule:                                                                       # checks if given time is in schedule
                 return Response({"status": "Failure", "Description" : "Time provided is not scheduled"})
 
             try:
-                entry_count = Booking.objects.all().filter(time=req_time, date=request.data.get('date', '')).count()
+                entry_count = Booking.objects.all().filter(time=req_time, date=request.data.get('date', '')).count()   # counts number of entries of particular date and time
             except:
                 return Response({"status": "Failure", "Description" : "Invalid date format"})
-            if entry_count >= 20:
+            if entry_count >= 20:                                                                                     # if count >= 20 then stop entry
                 return Response({"status": "Failure", "Description" : "Time slot is completely booked"})
 
 
@@ -74,9 +74,9 @@ def handle_ticket(request, id):
             ticket = Booking.objects.get(ticket_id = id)
         except Booking.DoesNotExist:
             return Response({"status": "Failure", "Description" : "Not found"})
-        schedule = [time(8,0,0), time(10,45,0), time(13,30,0), time(16,15,0), time(19,0,0), time(21,45,0)]
-        date = request.data.get('date', '')
-        ptime = request.data.get('time', '')
+        schedule = [time(8,0,0), time(10,45,0), time(13,30,0), time(16,15,0), time(19,0,0), time(21,45,0)]              # predefined time schedule
+        date = request.data.get('date', '')                                                                             # this reuses lots of above code, a dedicated function would be better
+        ptime = request.data.get('time', '')                                                                            # ptime is for provided time
         if date is not '' and time is not '':
             try:
                 ptime = ptime.split(':')
@@ -84,7 +84,7 @@ def handle_ticket(request, id):
             except:
                 return Response({"status": "Failure", "Description" : "Invalid time format"})
 
-            if req_time not in schedule:
+            if req_time not in schedule:                                                                                # checks if given time is in schedule
                 return Response({"status": "Failure", "Description" : "Time provided is not scheduled"})
 
             try:

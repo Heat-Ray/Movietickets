@@ -4,5 +4,5 @@ from bookings_api.models import Booking
 def remove_expired_tickets():
     tickets = Booking.objects.all()
     for i in tickets:
-        if i.status == 0:
+        if i.status == 0:           # simply removes entries with status 0
             i.delete()

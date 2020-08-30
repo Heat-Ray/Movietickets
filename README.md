@@ -166,7 +166,7 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/3/
 ![del_id](del_id.png)
 
 ## Database description
-We are using __Sqlite__ to store all our data. Our database has one table named __Booking__ with the following schema
+We are using __Sqlite__ to store all our data and using __Django ORM__ to do CRUD operations on the database Our database has one table named __Booking__ with the following schema
 
 ticket_id | user_name | phone_number | date | time | status |
 ---------|----------|--------- |--------- |--------- |--------- |
