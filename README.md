@@ -1,5 +1,4 @@
 # Movietickets
-***
 A simple __REST API__ for a movie ticket booking system which provides multiple endpoints to add, fetch, modify and delete movie tickets from a database. The interface is written in __Python__ using __Django__ and uses __Sqlite__ as database to store all data. __Django REST Framework__ is used for data serialization.
 
 ## Implemented features
