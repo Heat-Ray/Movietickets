@@ -1,5 +1,7 @@
 # Movietickets
-A simple __REST API__ for a movie ticket booking system which provides multiple endpoints to add, fetch, modify and delete movie tickets from a database. The interface is written in __Python__ using __Django__ and uses __Sqlite__ as database to store all data. __Django REST Framework__ is used for data serialization.
+A simple __REST API__ for a movie ticket booking system which provides multiple endpoints to add, fetch, modify and delete movie tickets from a database. The interface is written in __Python__ using __Django__ and uses __Sqlite__ as database to store all data. __Django REST Framework__ is used for data serialization. The project was developed on Ubuntu Linux and hence it is suggested to use a Linux machine to run this project.
+
+__This project was done for Zomentum hiring challenge conducted for JIIT students.__
 
 ## Implemented features
 1. View all available tickets in the database.
@@ -16,10 +18,11 @@ A simple __REST API__ for a movie ticket booking system which provides multiple 
 #### 1.  By cloning the repository
 * Git clone the repository on local system and change directory to Movietickets.
 * Run `pip install -r requirements.txt` in the terminal to download all dependencies.
-* Run `python manage.py runserver` to start the django server.
+* Run `python manage.py runserver --noreload` to start the django server.
+![runserver](Images/runserver.png)
 * Open Postman and click on Import button.
 * Select `Movie tickets.postman_collection.json` from Movietickets cloned repository and click Import.
-![postman_import](steps_postman_import.png)
+![postman_import](Images/steps_postman_import.png)
 * Now you can run individual requests one by one or run all requests and tests using Runner.
 #### 2.  Using https://movie-tickets-api.herokuapp.com/bookings_api/
 An instance of the API is deployed on __Heroku__ that can be accessed using __Postman__. This removes the requirement for downloading dependencies and running the django server on the local machine. This instance of API is not accessible through web browsers and is comparatively slower than the localhost instance.
@@ -59,7 +62,7 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/
         "status": 1
     }]
 
-![get_booking](get_booking.png)
+![get_booking](Images/get_booking.png)
 
 #### 2. POST booking/
 This endpoint makes a new ticket entry in the database and returns the ticket id if successful. More than 20 tickets cannot be booked for a particular date and time. All times are pre-scheduled and can be one of these - (08:00, 10:45, 13:30, 16:15, 19:00, 21:45)
@@ -82,7 +85,7 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/
     "Description": "Ticket 8 sucessfully created"
 }
 
-![post_booking](post_booking.png)
+![post_booking](Images/post_booking.png)
 
 #### 3. GET booking/?date={date}&time={time}
 This endpoint fetches all of the tickets which has same date and time as provided by the arguments.
@@ -103,7 +106,7 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/?date=2020-09-12&ti
     }
 ]
 
-![get_bookingt](get_bookingt.png)
+![get_bookingt](Images/get_bookingt.png)
 
 #### 4. GET booking/{id}/
 This endpoint fetches the username and phone number associated with the given ticket id.
@@ -123,7 +126,7 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/1/
     "phone_number": "9334556789"
 }
 
-![get_id](get_id.png)
+![get_id](Images/get_id.png)
 
 #### 5. PATCH booking/{id}/
 This endpoint updates the date and time of a given ticket id.All times are pre-scheduled and can be one of these - (08:00, 10:45, 13:30, 16:15, 19:00, 21:45)
@@ -143,7 +146,7 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/1/
     "Description": "Ticket updated successfully"
 }
 
-![upd_id](upd_id.png)
+![upd_id](Images/upd_id.png)
 
 #### 6. DELETE booking/{id}/
 This endpoint deletes the ticket with given id from the database.
@@ -163,10 +166,10 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/3/
     "Description": "Ticket deleted successfully"
 }
 
-![del_id](del_id.png)
+![del_id](Images/del_id.png)
 
 ## Database description
-We are using __Sqlite__ to store all our data and using __Django ORM__ to do CRUD operations on the database Our database has one table named __Booking__ with the following schema
+We are using __Sqlite__ to store all our data. Our database has one table named __Booking__ with the following schema
 
 ticket_id | user_name | phone_number | date | time | status |
 ---------|----------|--------- |--------- |--------- |--------- |
@@ -189,9 +192,9 @@ Column name | Description |
  It schedules how often expiry_checker.py and expired_ticket_remover.py run.
 
  2. __expiry_checker.py__
- It runs every 60 seconds and checks if a ticket is expired by comparing ticket's timings with current timing. If a ticket is expired then it sets it's status flag as 0.
+ It runs every 30 seconds and checks if a ticket is expired by comparing ticket's timings with current timing. If a ticket is expired then it sets it's status flag as 0.
  3. __expired_ticket_remover.py__
- It runs every 2 minutes and deletes all tickets whose status flag is 0.
+ It runs every 110 seconds and deletes all tickets whose status flag is 0.
 
  Since, the APS process scheduler is asynchronous in nature, we do not need to restart the server to delete the tickets. All expired tickets are removed __on the fly__ without affecting the server.
 
@@ -199,7 +202,7 @@ Column name | Description |
 Tests are written in Postman to check the status codes, response times and if the response being sent is empty or not. All tests can be tested at once by running the collection in __Runner__.
 
 __Some screenshots of tests being run in Postman__
-![sc_t1](sc_t1.png)
-![sc_t2](sc_t2.png)
-![sc_t3](sc_t3.png)
-![sc_t4](sc_t4.png)
+![sc_t1](Images/sc_t1.png)
+![sc_t2](Images/sc_t2.png)
+![sc_t3](Images/sc_t3.png)
+![sc_t4](Images/sc_t4.png)
