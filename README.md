@@ -71,7 +71,7 @@ This endpoint makes a new ticket entry in the database and returns the ticket id
 user_name -  Alphanumeric user's name\
 phone_number - Numeric user's phone number\
 date - Date in YYYY-MM-DD format\
-time - time in HH:MM format\
+time - time in HH:MM format
 
 ##### Localhost example
 http://localhost:8000/bookings_api/booking/
@@ -92,7 +92,7 @@ This endpoint fetches all of the tickets which has same date and time as provide
 
 ##### Arguments
 date - Date in YYYY-MM-DD format\
-time - Time in HH:MM format\
+time - Time in HH:MM format
 
 ##### Localhost example
 http://localhost:8000/bookings_api/booking/?date=2020-09-12&time=13:23
