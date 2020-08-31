@@ -71,7 +71,7 @@ This endpoint makes a new ticket entry in the database and returns the ticket id
 user_name -  Alphanumeric user's name\
 phone_number - Numeric user's phone number\
 date - Date in YYYY-MM-DD format\
-time - time in HH:MM format
+time - Time in HH:MM format
 
 ##### Localhost example
 http://localhost:8000/bookings_api/booking/
