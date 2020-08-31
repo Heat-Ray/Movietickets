@@ -206,3 +206,6 @@ __Some screenshots of tests being run in Postman__
 ![sc_t2](Images/sc_t2.png)
 ![sc_t3](Images/sc_t3.png)
 ![sc_t4](Images/sc_t4.png)
+
+__We hope that you like the project :-)__
+__Please suggest any changes you like by openeing up issues.__
