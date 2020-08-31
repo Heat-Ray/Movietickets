@@ -68,10 +68,10 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/
 This endpoint makes a new ticket entry in the database and returns the ticket id if successful. More than 20 tickets cannot be booked for a particular date and time. All times are pre-scheduled and can be one of these - (08:00, 10:45, 13:30, 16:15, 19:00, 21:45)
 
 ##### Arguments
-user_name -  Alphanumeric user's name
-phone_number - Numeric user's phone number
-date - Date in YYYY-MM-DD format
-time - time in HH:MM format
+user_name -  Alphanumeric user's name\
+phone_number - Numeric user's phone number\
+date - Date in YYYY-MM-DD format\
+time - time in HH:MM format\
 
 ##### Localhost example
 http://localhost:8000/bookings_api/booking/
@@ -91,8 +91,8 @@ https://movie-tickets-api.herokuapp.com/bookings_api/booking/
 This endpoint fetches all of the tickets which has same date and time as provided by the arguments.
 
 ##### Arguments
-date - Date in YYYY-MM-DD format
-time - Time in HH:MM format
+date - Date in YYYY-MM-DD format\
+time - Time in HH:MM format\
 
 ##### Localhost example
 http://localhost:8000/bookings_api/booking/?date=2020-09-12&time=13:23
