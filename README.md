@@ -25,7 +25,7 @@ __This project was done for Zomentum hiring challenge conducted for JIIT student
 ![postman_import](Images/steps_postman_import.png)
 * Now you can run individual requests one by one or run all requests and tests using Runner.
 #### 2.  Using https://movie-tickets-api.herokuapp.com/bookings_api/
-An instance of the API is deployed on __Heroku__ that can be accessed using __Postman__. This removes the requirement for downloading dependencies and running the django server on the local machine. This instance of API is not accessible through web browsers and is comparatively slower than the localhost instance.
+An instance of the API is deployed on __Heroku__ that can be accessed using __Postman__. This removes the requirement for downloading dependencies and running the django server on the local machine. This instance of API is accessible through web browsers and is comparatively slower than the localhost instance.
 * Git clone the repository on local system and change directory to Movietickets.
 * Open Postman and click on Import button.
 * Select `Movie tickets Heroku.postman_collection.json` from Movietickets cloned repository and click Import.
